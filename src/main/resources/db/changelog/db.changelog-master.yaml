@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changes/0001-create-rsvp-request.yaml
+      relativeToChangelogFile: false

@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0001-create-rsvp-request
+      author: gsavvy
+      changes:
+        - createTable:
+            tableName: rsvp_request
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: guest_name
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(320)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: attending
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+              - column:
+                  name: guests_count
+                  type: INTEGER
+                  defaultValueNumeric: 1
+                  constraints:
+                    nullable: false
+              - column:
+                  name: message
+                  type: TEXT
+              - column:
+                  name: created_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  constraints:
+                    nullable: false
+        - createIndex:
+            tableName: rsvp_request
+            indexName: idx_rsvp_request_email
+            columns:
+              - column:
+                  name: email
