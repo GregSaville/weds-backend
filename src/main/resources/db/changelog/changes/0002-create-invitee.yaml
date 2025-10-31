@@ -32,6 +32,11 @@ databaseChangeLog:
                   type: UUID
                   constraints:
                     nullable: true
+              - column:
+                  name: is_notified
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
         - addForeignKeyConstraint:
             baseTableName: invitee
             baseColumnNames: rsvp_id

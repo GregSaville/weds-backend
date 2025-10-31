@@ -23,6 +23,9 @@ class InviteeEntity(
     @Column(name = "allowed_party_size", nullable = false)
     var allowedPartySize: Int,
 
+    @Column(name = "is_notified", nullable = true)
+    var isNotified: Boolean = false,
+
     @Column(name = "rsvp_id", nullable = true)
     var rsvp: RsvpRequestId?
 )
