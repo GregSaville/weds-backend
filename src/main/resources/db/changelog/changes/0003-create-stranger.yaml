@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0003-create-stranger
+      author: gsavvy
+      changes:
+        - createTable:
+            tableName: stranger
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rsvp_id
+                  type: UUID
+                  constraints:
+                    nullable: true

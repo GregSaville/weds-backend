@@ -1,5 +1,6 @@
 package org.savvy.weds
 
+import org.savvy.weds.input.InputService
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
@@ -7,5 +8,6 @@ import org.springframework.boot.runApplication
 class WedsBackendApplication
 
 fun main(args: Array<String>) {
-	runApplication<WedsBackendApplication>(*args)
+    val ctx = runApplication<WedsBackendApplication>(*args)
+    ctx.getBean(InputService::class.java).seedGuests()
 }

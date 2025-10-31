@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0002-create-invitee
+      author: gsavvy
+      changes:
+        - createTable:
+            tableName: invitee
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: VARCHAR(300)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: allowed_party_size
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rsvp_id
+                  type: UUID
+                  constraints:
+                    nullable: true
+        - addForeignKeyConstraint:
+            baseTableName: invitee
+            baseColumnNames: rsvp_id
+            referencedTableName: rsvp_request
+            referencedColumnNames: id
+            constraintName: fk_invitee_rsvp_request
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: SET NULL
+        - createIndex:
+            tableName: invitee
+            indexName: idx_invitee_rsvp_id
+            columns:
+              - column:
+                  name: rsvp_id

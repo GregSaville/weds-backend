@@ -13,26 +13,40 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: guest_name
-                  type: VARCHAR(200)
+                  name: guest_id
+                  type: UUID
                   constraints:
-                    nullable: false
+                    nullable: true
+              - column:
+                  name: stranger_id
+                  type: UUID
+                  constraints:
+                    nullable: true
               - column:
                   name: email
                   type: VARCHAR(320)
                   constraints:
-                    nullable: false
+                    nullable: true
               - column:
-                  name: attending
-                  type: BOOLEAN
+                  name: phone
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: VARCHAR(30)
                   constraints:
                     nullable: false
               - column:
-                  name: guests_count
-                  type: INTEGER
-                  defaultValueNumeric: 1
+                  name: address
+                  type: JSONB
                   constraints:
-                    nullable: false
+                    nullable: true
+              - column:
+                  name: additional_guests
+                  type: JSONB
+                  constraints:
+                    nullable: true
               - column:
                   name: message
                   type: TEXT
@@ -46,9 +60,17 @@ databaseChangeLog:
                   type: TIMESTAMP WITH TIME ZONE
                   constraints:
                     nullable: false
+        - sql:
+            sql: "ALTER TABLE rsvp_request ADD CONSTRAINT chk_rsvp_request_guest_or_stranger CHECK (guest_id IS NOT NULL OR stranger_id IS NOT NULL)"
         - createIndex:
             tableName: rsvp_request
             indexName: idx_rsvp_request_email
             columns:
               - column:
                   name: email
+        - createIndex:
+            tableName: rsvp_request
+            indexName: idx_rsvp_request_phone
+            columns:
+              - column:
+                  name: phone
